@@ -1,9 +1,11 @@
 {
   "root": true,
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:jsx-control-statements/recommended"
   ],
   "plugins": [
+    "jsx-control-statements"
   ],
   "settings": {
     "import/resolver": {
