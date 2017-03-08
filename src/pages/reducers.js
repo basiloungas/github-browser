@@ -1,4 +1,5 @@
 import users from './users/reducers';
+import user from './user/reducers';
 
 const usersInitialData = {
   list: [],
@@ -9,6 +10,9 @@ const usersInitialData = {
 
 export default {
   users(state = usersInitialData, action) {
-    return users(state, action);
+    state = users(state, action);
+    state = user(state, action);
+
+    return state;
   },
 };

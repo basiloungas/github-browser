@@ -13,6 +13,7 @@ import createStore from './store';
 
 import Layout from './pages/layout';
 import Users from './pages/users';
+import User from './pages/user';
 
 import './index.css';
 
@@ -26,6 +27,7 @@ ReactDOM.render(
 
         <Route path="users" >
           <IndexRoute component={Users} />
+          <Route path=":userLogin" component={User} />
         </Route>
 
         <Redirect from="*" to="/" />
