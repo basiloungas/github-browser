@@ -8,6 +8,7 @@ import {
   Redirect,
 } from 'react-router';
 import createStore from './store';
+import Layout from './pages/layout';
 import './index.css';
 
 const store = createStore();
@@ -15,7 +16,7 @@ const store = createStore();
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" >
+      <Route path="/" component={Layout} >
         <Redirect from="*" to="/" />
       </Route>
     </Router>
