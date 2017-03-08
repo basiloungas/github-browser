@@ -6,9 +6,14 @@ import {
   Route,
   browserHistory,
   Redirect,
+  IndexRoute,
+  IndexRedirect,
 } from 'react-router';
 import createStore from './store';
+
 import Layout from './pages/layout';
+import Users from './pages/users';
+
 import './index.css';
 
 const store = createStore();
@@ -17,6 +22,12 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={Layout} >
+        <IndexRedirect to="/users" />
+
+        <Route path="users" >
+          <IndexRoute component={Users} />
+        </Route>
+
         <Redirect from="*" to="/" />
       </Route>
     </Router>
