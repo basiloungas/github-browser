@@ -6,6 +6,7 @@ import { Row, Panel, ListGroup } from 'react-bootstrap';
 import ensureUsers from './hocs/ensureUsers';
 import ListItem from './components/list-item';
 import Loader from '../../components/loader/index';
+import LoadMoreButton from './components/load-more-button';
 
 const Users = (props) => {
   const { users, isFetching } = props;
@@ -24,6 +25,7 @@ const Users = (props) => {
             <ListGroup componentClass="ul">
               { users.map(user => <ListItem key={user.id} data={user} />) }
             </ListGroup>
+            <LoadMoreButton />
           </Row>
         </Otherwise>
       </Choose>

@@ -6,6 +6,7 @@ const usersInitialData = {
   meta: {},
   error: null,
   isFetching: false,
+  isFetchingNext: false,
 };
 
 export default {

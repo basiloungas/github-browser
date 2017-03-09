@@ -20,6 +20,12 @@ const fetchAllUsers = () => {
   return fetcher(url, options);
 };
 
+const fetchMoreUsers = (url) => {
+  const options = getFetchOptions();
+
+  return fetcher(url, options);
+};
+
 const fetchUser = (username) => {
   const url = `${baseUrl}/users/${username}`;
   const options = getFetchOptions();
@@ -29,5 +35,6 @@ const fetchUser = (username) => {
 
 export default {
   fetchAllUsers,
+  fetchMoreUsers,
   fetchUser,
 };

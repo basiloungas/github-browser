@@ -1,5 +1,14 @@
-// import data from './users.json';
 import * as Actions from './actions';
+
+function exportNextLink(headers) {
+  const tokens = headers.link.split(', ');
+  const nextToken = tokens.find(token => token.indexOf('"next"') !== -1);
+  const url = nextToken.match('<(.*)>');
+  if (!url) {
+    return null;
+  }
+  return url[1];
+}
 
 const users = (state, action) => {
   switch (action.type) {
@@ -15,12 +24,39 @@ const users = (state, action) => {
         error: null,
         isFetching: false,
         list: action.payload.data,
+        meta: {
+          ...state.meta,
+          next: exportNextLink(action.payload.headers),
+        },
       };
     case Actions.FETCH_USERS_FAIL:
       return {
         ...state,
         error: action.payload,
         isFetching: false,
+      };
+    case Actions.FETCH_MORE_USERS:
+      return {
+        ...state,
+        error: null,
+        isFetchingNext: true,
+      };
+    case Actions.FETCH_MORE_USERS_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        isFetchingNext: false,
+        list: state.list.concat(action.payload.data),
+        meta: {
+          ...state.meta,
+          next: exportNextLink(action.payload.headers),
+        },
+      };
+    case Actions.FETCH_MORE_USERS_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        isFetchingNext: false,
       };
     default:
       return state;
