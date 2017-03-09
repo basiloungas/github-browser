@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Row, Panel, ListGroup } from 'react-bootstrap';
 
 import ensureUsers from './hocs/ensureUsers';
 import ListItem from './components/list-item';
@@ -11,18 +12,22 @@ const Users = (props) => {
 
   // TODO: add animation on list items
   return (
-    <div style={{ padding: '100px', background: 'pink' }}>
+    <Panel style={{ background: '#e8e8e8' }}>
       <Choose>
         <When condition={isFetching}>
-          <Loader background="pink" size="15px" />
+          <div style={{ textAlign: 'center', margin: '130px 0' }}>
+            <Loader background="#e8e8e8" size="15px" />
+          </div>
         </When>
         <Otherwise>
-          <ul>
-            { users.map(user => <ListItem key={user.id} data={user} />) }
-          </ul>
+          <Row className="show-grid">
+            <ListGroup componentClass="ul">
+              { users.map(user => <ListItem key={user.id} data={user} />) }
+            </ListGroup>
+          </Row>
         </Otherwise>
       </Choose>
-    </div>
+    </Panel>
   );
 };
 

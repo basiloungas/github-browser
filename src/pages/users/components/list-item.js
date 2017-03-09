@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { css } from 'aphrodite/no-important';
+import { Col } from 'react-bootstrap';
+import styles from './styles';
 
 const ListItem = (props) => {
   const {
@@ -8,14 +11,22 @@ const ListItem = (props) => {
     id,
   } = props.data;
 
+  const linkClassNames = `${css(styles.container)} list-group-item clearfix`;
+
   return (
-    <li>
-      <Link to={`/users/${login}`}>
-        <span>{id}</span>
-        <img width="100" height="100" src={avatar_url} alt="thumb" />
-        <span>{login}</span>
+    <Col xs={12} sm={6} lg={4}>
+      <Link className={linkClassNames} to={`/users/${login}`}>
+        <img
+          className={css(styles.image)}
+          width="100"
+          height="100"
+          src={avatar_url}
+          alt="thumb"
+        />
+        <p><small>Id:</small> {id}</p>
+        <p><small>Login:</small> {login}</p>
       </Link>
-    </li>
+    </Col>
   );
 };
 
