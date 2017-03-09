@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router';
-
+import { Jumbotron, Button } from 'react-bootstrap';
+import { css } from 'aphrodite/no-important';
+import styles from './styles';
 import Loader from '../../components/loader/index';
 import ensureUser from './hocs/ensureUser';
 
@@ -10,24 +11,49 @@ export const User = (props) => {
   const {
     user: {
       login,
-      id,
+      avatar_url,
+      html_url,
     },
+    router,
     isFetching,
   } = props;
 
-  return (
+  const onCLick = (e) => {
+    e.preventDefault();
+    router.push({ pathname: '/' });
+  };
 
-    <div style={{ padding: '100px', background: 'pink' }}>
+  return (
+    <Jumbotron className={css(styles.container)}>
       <Choose>
         <When condition={isFetching}>
-          <Loader background="pink" size="15px" />
+          <div style={{ textAlign: 'center', margin: '130px 0' }}>
+            <Loader background="#eee" size="15px" />
+          </div>
         </When>
         <Otherwise>
-          <p>This is user: {login} with id: {id}</p>
+          <h1>Github user: {login}</h1>
+          <a target="blank" href={html_url}>
+            <img
+              className={css(styles.image)}
+              width="300"
+              height="300"
+              src={avatar_url}
+              alt="thumb"
+            />
+          </a>
+          <p>User's data:</p>
+
+          <pre className={css(styles.pre)}>
+            {JSON.stringify(props.user, null, 2)}
+          </pre>
+
+          <div className={css(styles.button)}>
+            <Button bsSize="large" bsStyle="primary" onClick={onCLick}>Back</Button>
+          </div>
         </Otherwise>
       </Choose>
-      <Link to={'/'}>Back</Link>
-    </div>
+    </Jumbotron>
   );
 };
 
@@ -38,9 +64,11 @@ User.defaultProps = {
 User.propTypes = {
   user: React.PropTypes.shape({
     login: React.PropTypes.string,
-    id: React.PropTypes.number,
+    avatar_url: React.PropTypes.string,
+    html_url: React.PropTypes.string,
   }),
   isFetching: React.PropTypes.bool.isRequired,
+  router: React.PropTypes.shape().isRequired,
 };
 
 function mapStateToProps(state, ownProps) {

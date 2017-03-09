@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { PageHeader } from 'react-bootstrap';
+import { css } from 'aphrodite/no-important';
+import styles from './styles';
 
 export const Header = (props) => {
   const { userLogin } = props;
@@ -11,7 +13,7 @@ export const Header = (props) => {
       <Choose>
         <When condition={userLogin}>
           <p>
-            <Link to={'/users/'}>
+            <Link className={css(styles.link)} to={'/users/'}>
               Github Users
             </Link>
             <small>
