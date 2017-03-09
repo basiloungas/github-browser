@@ -1,26 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { PageHeader } from 'react-bootstrap';
 
 export const Header = (props) => {
   const { userLogin } = props;
 
   return (
-    <header>
+    <PageHeader>
       <Choose>
         <When condition={userLogin}>
-          <h1>
+          <p>
             <Link to={'/users/'}>
               Github Users
             </Link>
-            &gt; {userLogin}
-          </h1>
+            <small>
+              &gt; {userLogin}
+            </small>
+          </p>
         </When>
         <Otherwise>
-          <h1>Github Users</h1>
+          <p>Github Users</p>
         </Otherwise>
       </Choose>
-    </header>
+    </PageHeader>
   );
 };
 
