@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Panel, ListGroup } from 'react-bootstrap';
+import FlipMove from 'react-flip-move';
 
 import ensureUsers from './hocs/ensureUsers';
 import ListItem from './components/list-item';
@@ -11,7 +12,6 @@ import LoadMoreButton from './components/load-more-button';
 const Users = (props) => {
   const { users, isFetching } = props;
 
-  // TODO: add animation on list items
   return (
     <Panel style={{ background: '#e8e8e8' }}>
       <Choose>
@@ -23,7 +23,15 @@ const Users = (props) => {
         <Otherwise>
           <Row className="show-grid">
             <ListGroup componentClass="ul">
-              { users.map(user => <ListItem key={user.id} data={user} />) }
+              <FlipMove
+                appearAnimation="accordionVertical"
+                enterAnimation="fade"
+                duration={120}
+                staggerDurationBy={30}
+                easing="ease-out"
+              >
+                { users.map(user => <div key={user.id}><ListItem data={user} /></div>) }
+              </FlipMove>
             </ListGroup>
             <LoadMoreButton />
           </Row>
