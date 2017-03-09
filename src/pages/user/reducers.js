@@ -13,7 +13,7 @@ const users = (state, action) => {
         ...state,
         error: null,
         isFetching: false,
-        list: state.list.concat([action.payload]),
+        list: state.list.concat([action.payload.data]),
       };
     case Actions.FETCH_USER_FAIL:
       return {

@@ -7,10 +7,18 @@ function checkStatus(response) {
   throw error;
 }
 
-function parseJSON(response) {
-  return response.json();
+function parseResponse(response) {
+  const headers = Array.from(response.headers.entries())
+    .reduce((result, header) => {
+      result[header[0]] = header[1];
+      return result;
+    }, {});
+
+  return response
+    .json()
+    .then(data => ({ data, headers }));
 }
 
 export default (url, options) => fetch(url, options)
   .then(checkStatus)
-  .then(parseJSON);
+  .then(parseResponse);

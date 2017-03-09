@@ -14,7 +14,7 @@ const users = (state, action) => {
         ...state,
         error: null,
         isFetching: false,
-        list: action.payload,
+        list: action.payload.data,
       };
     case Actions.FETCH_USERS_FAIL:
       return {
