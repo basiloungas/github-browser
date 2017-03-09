@@ -9,7 +9,7 @@ import ListItem from './components/list-item';
 import Loader from '../../components/loader/index';
 import LoadMoreButton from './components/load-more-button';
 
-const Users = (props) => {
+export const Users = (props) => {
   const { users, isFetching } = props;
 
   return (

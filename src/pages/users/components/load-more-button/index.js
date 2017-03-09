@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col, Button } from 'react-bootstrap';
 import * as Actions from '../../actions';
 
-const LoadMoreButton = (props) => {
+export const LoadMoreButton = (props) => {
   const { nextUrl, isFetching, requestFetchMoreUsers } = props;
 
   return (
