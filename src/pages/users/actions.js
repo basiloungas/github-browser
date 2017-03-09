@@ -12,8 +12,9 @@ export const fetchUsersSuccess = payload => ({
 });
 
 export const FETCH_USERS_FAIL = 'FETCH_USERS_FAIL';
-export const fetchUsersFail = () => ({
+export const fetchUsersFail = payload => ({
   type: FETCH_USERS_FAIL,
+  payload,
 });
 
 
@@ -29,8 +30,9 @@ export const fetchMoreUsersSuccess = payload => ({
 });
 
 export const FETCH_MORE_USERS_FAIL = 'FETCH_MORE_USERS_FAIL';
-export const fetchMoreUsersFail = () => ({
+export const fetchMoreUsersFail = payload => ({
   type: FETCH_MORE_USERS_FAIL,
+  payload,
 });
 
 export const requestFetchMoreUsers = url => (dispatch) => {

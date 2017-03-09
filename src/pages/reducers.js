@@ -1,7 +1,7 @@
 import users from './users/reducers';
 import user from './user/reducers';
 
-const usersInitialData = {
+export const usersInitialData = {
   list: [],
   meta: {},
   error: null,

@@ -1,13 +1,14 @@
 import * as Actions from './actions';
 
 function exportNextLink(headers) {
-  const tokens = headers.link.split(', ');
-  const nextToken = tokens.find(token => token.indexOf('"next"') !== -1);
-  const url = nextToken.match('<(.*)>');
-  if (!url) {
+  try {
+    const tokens = headers.link.split(', ');
+    const nextToken = tokens.find(token => token.indexOf('"next"') !== -1);
+    const url = nextToken.match('<(.*)>');
+    return url[1];
+  } catch (err) {
     return null;
   }
-  return url[1];
 }
 
 const users = (state, action) => {

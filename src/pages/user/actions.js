@@ -11,6 +11,7 @@ export const fetchUserSuccess = payload => ({
 });
 
 export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
-export const fetchUserFail = () => ({
+export const fetchUserFail = payload => ({
   type: FETCH_USER_FAIL,
+  payload,
 });
